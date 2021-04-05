@@ -8,6 +8,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
@@ -37,7 +38,8 @@ public class App extends Application {
 																		new BufferedReader(
 																				new FileReader(
 																						new File("BookPrices.txt"))))
-																								.toArray())))));
+																								.toArray())),
+										new Button("Add to shopping cart"))));
 
 		stage.show();
 	}
