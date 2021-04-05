@@ -15,7 +15,8 @@ public class BookPrices {
 	List<String> toArrayList() throws IOException {
 		final var result = new ArrayList<String>();
 		while (br.ready()) {
-			result.add(br.readLine());
+			var titles = br.readLine().split(",");
+			result.add(titles[0]);
 		}
 		return result;
 	}
