@@ -46,14 +46,14 @@ public class App extends Application {
 										new VBox(10, new Label("Pick a book"), initializeListView()),
 										new VBox(
 												10,
-												new EventButton(
-														"Add to shopping cart",
-														e -> shoppingCart
-																.getItems()
-																.add(listView.getSelectionModel().getSelectedItem()))),
+												new EventButton("Add to shopping cart", e -> addItemToShoppingCart())),
 										new VBox(10, new Label("Shopping cart"), shoppingCart))));
 
 		stage.show();
+	}
+
+	private boolean addItemToShoppingCart() {
+		return shoppingCart.getItems().add(listView.getSelectionModel().getSelectedItem());
 	}
 
 }
