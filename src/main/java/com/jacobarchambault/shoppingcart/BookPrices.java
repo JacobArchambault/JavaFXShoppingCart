@@ -12,7 +12,7 @@ public class BookPrices {
 		br = reader;
 	}
 
-	List<String> toArray() throws IOException {
+	List<String> toArrayList() throws IOException {
 		final var result = new ArrayList<String>();
 		while (br.ready()) {
 			result.add(br.readLine());

@@ -31,7 +31,7 @@ public class App extends Application {
 				FXCollections
 						.observableArrayList(
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
-										.toArray()));
+										.toArrayList()));
 
 		stage
 				.setScene(
