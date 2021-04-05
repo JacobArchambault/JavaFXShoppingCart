@@ -26,6 +26,7 @@ public class App extends Application {
 	}
 
 	ListView<String> listView;
+	ListView<String> shoppingCart = new ListView<String>();
 
 	ListView<String> initializeListView() throws FileNotFoundException, IOException {
 		listView = new ListView<>(
@@ -43,8 +44,14 @@ public class App extends Application {
 						new Scene(
 								new HBox(
 										new VBox(10, new Label("Pick a book"), initializeListView()),
-										new VBox(10, new Button("Add to shopping cart")),
-										new VBox(10, new Label("Shopping cart"), new ListView<String>()))));
+										new VBox(
+												10,
+												new EventButton(
+														"Add to shopping cart",
+														e -> shoppingCart
+																.getItems()
+																.add(listView.getSelectionModel().getSelectedItem()))),
+										new VBox(10, new Label("Shopping cart"), shoppingCart))));
 
 		stage.show();
 	}
