@@ -53,12 +53,16 @@ public class App extends Application {
 												new HBox(
 														10,
 														new EventButton("Remove selection", e -> remove()),
-														new Button("Clear cart"))))));
+														new EventButton("Clear cart", e -> removeAll()))))));
 
 		stage.show();
 	}
 
 	void remove() {
 		shoppingCart.getItems().remove(shoppingCart.getSelectionModel().getSelectedItem());
+	}
+
+	void removeAll() {
+		shoppingCart.getItems().clear();
 	}
 }
