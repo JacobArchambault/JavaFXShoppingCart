@@ -20,16 +20,6 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-	static List<String> createFile() throws IOException {
-		ArrayList<String> result = new ArrayList<>();
-
-		try (BufferedReader br = new BufferedReader(new FileReader("BookPrices.txt"))) {
-			while (br.ready()) {
-				result.add(br.readLine());
-			}
-		}
-		return result;
-	}
 
 	@Override
 	public void start(Stage stage) throws IOException {
@@ -39,7 +29,8 @@ public class App extends Application {
 								new VBox(
 										10,
 										new Label("Pick a book"),
-										new ListView<String>(FXCollections.observableArrayList(createFile())))));
+										new ListView<String>(
+												FXCollections.observableArrayList(BookPrices.createFile())))));
 
 		stage.show();
 	}
