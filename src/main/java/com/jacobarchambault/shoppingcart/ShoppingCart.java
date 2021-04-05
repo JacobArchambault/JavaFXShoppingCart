@@ -12,7 +12,7 @@ public class ShoppingCart {
 		this.shoppingCrt = shoppingCart;
 	}
 
-	void addItemToShoppingCart() {
+	void addItem() {
 		String selection = listView.getSelectionModel().getSelectedItem();
 		var shoppingCartItems = shoppingCrt.getItems();
 		if (!shoppingCartItems.contains(selection) && selection != null) {

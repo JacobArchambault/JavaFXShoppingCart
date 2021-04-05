@@ -44,9 +44,7 @@ public class App extends Application {
 												10,
 												new Label("Pick a book"),
 												listView,
-												new EventButton(
-														"Add to shopping cart",
-														e -> sc.addItemToShoppingCart())),
+												new EventButton("Add to shopping cart", e -> sc.addItem())),
 										new VBox(10, new Label("Shopping cart"), shoppingCart))));
 
 		stage.show();
