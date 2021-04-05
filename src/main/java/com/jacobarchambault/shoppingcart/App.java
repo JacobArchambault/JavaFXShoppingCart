@@ -25,39 +25,29 @@ public class App extends Application {
 		Application.launch();
 	}
 
-	ListView<String> listView;
 	ListView<String> shoppingCart = new ListView<>();
 
-	ListView<String> initializeListView() throws IOException {
-		listView = new ListView<>(
+	@Override
+	public void start(final Stage stage) throws IOException {
+		ListView<String> listView = new ListView<>(
 				FXCollections
 						.observableArrayList(
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
 										.toArray()));
-		return listView;
-	}
-
-	@Override
-	public void start(final Stage stage) throws IOException {
+		ShoppingCart sc = new ShoppingCart(listView, shoppingCart);
 		stage
 				.setScene(
 						new Scene(
 								new HBox(
-										new VBox(10, new Label("Pick a book"), initializeListView()),
+										new VBox(10, new Label("Pick a book"), listView),
 										new VBox(
 												10,
-												new EventButton("Add to shopping cart", e -> addItemToShoppingCart())),
+												new EventButton(
+														"Add to shopping cart",
+														e -> sc.addItemToShoppingCart())),
 										new VBox(10, new Label("Shopping cart"), shoppingCart))));
 
 		stage.show();
-	}
-
-	private void addItemToShoppingCart() {
-		String selection = listView.getSelectionModel().getSelectedItem();
-		var shoppingCartItems = shoppingCart.getItems();
-		if (!shoppingCartItems.contains(selection)) {
-			shoppingCartItems.add(selection);
-		}
 	}
 
 }
