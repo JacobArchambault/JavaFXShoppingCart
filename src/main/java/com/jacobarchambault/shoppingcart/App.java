@@ -39,9 +39,11 @@ public class App extends Application {
 				.setScene(
 						new Scene(
 								new HBox(
-										new VBox(10, new Label("Pick a book"), listView),
+										10,
 										new VBox(
 												10,
+												new Label("Pick a book"),
+												listView,
 												new EventButton(
 														"Add to shopping cart",
 														e -> sc.addItemToShoppingCart())),
