@@ -52,8 +52,12 @@ public class App extends Application {
 		stage.show();
 	}
 
-	private boolean addItemToShoppingCart() {
-		return shoppingCart.getItems().add(listView.getSelectionModel().getSelectedItem());
+	private void addItemToShoppingCart() {
+		String selection = listView.getSelectionModel().getSelectedItem();
+		var shoppingCartItems = shoppingCart.getItems();
+		if (!shoppingCartItems.contains(selection)) {
+			shoppingCartItems.add(selection);
+		}
 	}
 
 }
