@@ -15,7 +15,7 @@ public class ShoppingCart {
 	void addItemToShoppingCart() {
 		String selection = listView.getSelectionModel().getSelectedItem();
 		var shoppingCartItems = shoppingCrt.getItems();
-		if (!shoppingCartItems.contains(selection)) {
+		if (!shoppingCartItems.contains(selection) && selection != null) {
 			shoppingCartItems.add(selection);
 		}
 	}
