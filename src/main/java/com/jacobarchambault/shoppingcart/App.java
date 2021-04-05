@@ -2,6 +2,7 @@ package com.jacobarchambault.shoppingcart;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -24,24 +25,24 @@ public class App extends Application {
 		Application.launch();
 	}
 
+	ListView<String> listView;
+
+	ListView<String> initializeListView() throws FileNotFoundException, IOException {
+		listView = new ListView<>(
+				FXCollections
+						.observableArrayList(
+								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
+										.toArray()));
+		return listView;
+	}
+
 	@Override
 	public void start(final Stage stage) throws IOException {
 		stage
 				.setScene(
 						new Scene(
 								new HBox(
-										new VBox(
-												10,
-												new Label("Pick a book"),
-												new ListView<>(
-														FXCollections
-																.observableArrayList(
-																		new BookPrices(
-																				new BufferedReader(
-																						new FileReader(
-																								new File(
-																										"BookPrices.txt"))))
-																												.toArray()))),
+										new VBox(10, new Label("Pick a book"), initializeListView()),
 										new VBox(10, new Button("Add to shopping cart")),
 										new VBox(10, new Label("Shopping cart"), new ListView<String>()))));
 
