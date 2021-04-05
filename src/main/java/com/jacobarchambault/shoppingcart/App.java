@@ -2,11 +2,8 @@ package com.jacobarchambault.shoppingcart;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -21,22 +18,28 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+	public static void main(final String[] args) {
+		Application.launch();
+	}
+
 	@Override
-	public void start(Stage stage) throws IOException {
+	public void start(final Stage stage) throws IOException {
 		stage
 				.setScene(
 						new Scene(
 								new VBox(
 										10,
 										new Label("Pick a book"),
-										new ListView<String>(
-												FXCollections.observableArrayList(BookPrices.createFile())))));
+										new ListView<>(
+												FXCollections
+														.observableArrayList(
+																new BookPrices(
+																		new BufferedReader(
+																				new FileReader(
+																						new File("BookPrices.txt"))))
+																								.toArray())))));
 
 		stage.show();
-	}
-
-	public static void main(String[] args) {
-		launch();
 	}
 
 }
