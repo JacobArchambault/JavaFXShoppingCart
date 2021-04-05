@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,18 +29,21 @@ public class App extends Application {
 		stage
 				.setScene(
 						new Scene(
-								new VBox(
-										10,
-										new Label("Pick a book"),
-										new ListView<>(
-												FXCollections
-														.observableArrayList(
-																new BookPrices(
-																		new BufferedReader(
-																				new FileReader(
-																						new File("BookPrices.txt"))))
-																								.toArray())),
-										new Button("Add to shopping cart"))));
+								new HBox(
+										new VBox(
+												10,
+												new Label("Pick a book"),
+												new ListView<>(
+														FXCollections
+																.observableArrayList(
+																		new BookPrices(
+																				new BufferedReader(
+																						new FileReader(
+																								new File(
+																										"BookPrices.txt"))))
+																												.toArray()))),
+										new VBox(10, new Button("Add to shopping cart")),
+										new VBox(10, new Label("Shopping cart"), new ListView<String>()))));
 
 		stage.show();
 	}
