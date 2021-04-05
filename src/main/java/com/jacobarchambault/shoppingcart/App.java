@@ -8,7 +8,6 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
@@ -34,8 +33,6 @@ public class App extends Application {
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
 										.toArray()));
 
-		final var sc = new ShoppingCart(listView, shoppingCart);
-
 		stage
 				.setScene(
 						new Scene(
@@ -45,7 +42,9 @@ public class App extends Application {
 												10,
 												new Label("Pick a book"),
 												listView,
-												new EventButton("Add to shopping cart", e -> sc.addItem())),
+												new EventButton(
+														"Add to shopping cart",
+														e -> new ShoppingCart(listView, shoppingCart).addItem())),
 										new VBox(
 												10,
 												new Label("Shopping cart"),
