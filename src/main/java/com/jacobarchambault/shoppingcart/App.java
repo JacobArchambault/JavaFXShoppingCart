@@ -1,6 +1,9 @@
 package com.jacobarchambault.shoppingcart;
 
+import java.io.File;
+
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -11,10 +14,16 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
 	@Override
 	public void start(Stage stage) {
-		stage.setScene(new Scene(new VBox(10, new Label("Pick a book"), new ListView<String>())));
+		stage
+				.setScene(
+						new Scene(
+								new VBox(
+										10,
+										new Label("Pick a book"),
+										new ListView<String>(FXCollections.observableArrayList("Some text", "Some more text", "Another text")))));
+		
 		stage.show();
 	}
 
