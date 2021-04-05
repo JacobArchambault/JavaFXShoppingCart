@@ -26,9 +26,9 @@ public class App extends Application {
 	}
 
 	ListView<String> listView;
-	ListView<String> shoppingCart = new ListView<String>();
+	ListView<String> shoppingCart = new ListView<>();
 
-	ListView<String> initializeListView() throws FileNotFoundException, IOException {
+	ListView<String> initializeListView() throws IOException {
 		listView = new ListView<>(
 				FXCollections
 						.observableArrayList(
