@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ public class App extends Application {
 
 	ListView<String> shoppingCart = new ListView<>();
 
+	Label subTotal = new Label("$0.00");
 	@Override
 	public void start(final Stage stage) throws IOException {
 		final var listView = new ListView<String>(
@@ -52,7 +55,9 @@ public class App extends Application {
 												new HBox(
 														10,
 														new EventButton("Remove selection", e -> remove()),
-														new EventButton("Clear cart", e -> removeAll()))))));
+														new EventButton("Clear cart", e -> removeAll()),
+														new EventButton("Checkout", e -> checkout())),
+												new HBox(new Label("Subtotal"), subTotal)))));
 
 		stage.show();
 	}
@@ -64,4 +69,19 @@ public class App extends Application {
 	void removeAll() {
 		shoppingCart.getItems().clear();
 	}
+
+	void checkout() {
+		var prices = new ArrayList<String>();
+		var items = shoppingCart.getItems();
+		for (var item : items) {
+			prices.add(item.split(",")[1]);
+		}
+		double sum = 0;
+		for (String d : prices) {
+			sum += Double.parseDouble(d);
+		}
+		subTotal.setText(NumberFormat.getCurrencyInstance()
+				.format(sum));
+	}
+
 }
