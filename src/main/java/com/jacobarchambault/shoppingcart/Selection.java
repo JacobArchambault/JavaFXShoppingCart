@@ -2,12 +2,12 @@ package com.jacobarchambault.shoppingcart;
 
 import javafx.scene.control.ListView;
 
-public class ShoppingCart {
+public class Selection {
 
 	ListView<String> listView;
 	ListView<String> shoppingCrt;
 
-	ShoppingCart(ListView<String> listView, ListView<String> shoppingCart) {
+	Selection(ListView<String> listView, ListView<String> shoppingCart) {
 		this.listView = listView;
 		this.shoppingCrt = shoppingCart;
 	}

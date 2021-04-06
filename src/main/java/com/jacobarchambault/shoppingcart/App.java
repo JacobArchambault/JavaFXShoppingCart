@@ -50,7 +50,7 @@ public class App extends Application {
 												listView,
 												new EventButton(
 														"Add to shopping cart",
-														e -> new ShoppingCart(listView, shoppingCart).addItem())),
+														e -> new Selection(listView, shoppingCart).addItem())),
 										new VBox(
 												10,
 												new Label("Shopping cart"),
