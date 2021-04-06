@@ -73,11 +73,10 @@ public class App extends Application {
 		stage.show();
 	}
 
-	void checkout(ArrayList<String> priceArray) {
-		var prices = priceArray;
+	void checkout(ArrayList<Double> priceArray) {
 		double sum = 0;
-		for (String d : prices) {
-			sum += Double.parseDouble(d);
+		for (Double d : priceArray) {
+			sum += d;
 		}
 		var taxAmount = sum * .07;
 		subTotal.setText(NumberFormat.getCurrencyInstance().format(sum));
