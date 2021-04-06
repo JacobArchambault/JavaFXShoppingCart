@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -32,7 +31,7 @@ public class App extends Application {
 
 	@Override
 	public void start(final Stage stage) throws IOException {
-		final var listView = new ListView<String>(
+		final var listView = new ListView<>(
 				FXCollections
 						.observableArrayList(
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
@@ -77,8 +76,8 @@ public class App extends Application {
 		update(shoppingCart.subTotal());
 	}
 
-	void update(double sum) {
-		var taxAmount = sum * .07;
+	void update(final double sum) {
+		final var taxAmount = sum * .07;
 		subTotal.setText(NumberFormat.getCurrencyInstance().format(sum));
 		tax.setText(NumberFormat.getCurrencyInstance().format(taxAmount));
 		total.setText(NumberFormat.getCurrencyInstance().format(sum + taxAmount));

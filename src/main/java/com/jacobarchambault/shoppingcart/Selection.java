@@ -7,14 +7,14 @@ public class Selection {
 	ListView<String> listView;
 	ListView<String> shoppingCrt;
 
-	Selection(ListView<String> listView, ListView<String> shoppingCart) {
+	Selection(final ListView<String> listView, final ListView<String> shoppingCart) {
 		this.listView = listView;
-		this.shoppingCrt = shoppingCart;
+		shoppingCrt = shoppingCart;
 	}
 
 	void addItem() {
-		String selection = listView.getSelectionModel().getSelectedItem();
-		var shoppingCartItems = shoppingCrt.getItems();
+		final var selection = listView.getSelectionModel().getSelectedItem();
+		final var shoppingCartItems = shoppingCrt.getItems();
 		if (!shoppingCartItems.contains(selection) && selection != null) {
 			shoppingCartItems.add(selection);
 		}

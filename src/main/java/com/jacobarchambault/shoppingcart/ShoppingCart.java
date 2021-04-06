@@ -1,7 +1,5 @@
 package com.jacobarchambault.shoppingcart;
 
-import java.util.ArrayList;
-
 import javafx.scene.control.ListView;
 
 public class ShoppingCart extends ListView<String> {
@@ -14,9 +12,9 @@ public class ShoppingCart extends ListView<String> {
 	}
 
 	Double subTotal() {
-		var items = getItems();
+		final var items = getItems();
 		var sum = 0.0;
-		for (var item : items) {
+		for (final var item : items) {
 			sum += Double.parseDouble(item.split(",")[1]);
 		}
 		return sum;

@@ -6,12 +6,8 @@ import javafx.scene.control.Button;
 
 public class EventButton extends Button {
 
-	EventButton(
-			final String text,
-			final EventHandler<ActionEvent> value) {
-		super(
-				text);
-		setOnAction(
-				value);
+	EventButton(final String text, final EventHandler<ActionEvent> value) {
+		super(text);
+		setOnAction(value);
 	}
 }
