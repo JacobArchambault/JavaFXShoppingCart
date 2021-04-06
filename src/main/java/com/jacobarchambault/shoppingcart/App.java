@@ -49,7 +49,7 @@ public class App extends Application {
 												listView,
 												new EventButton("Add to shopping cart", e -> {
 													new Selection(listView, shoppingCart).addItem();
-													checkout(shoppingCart.priceArray());
+													update(shoppingCart.priceArray());
 												})),
 										new VBox(
 												10,
@@ -57,13 +57,13 @@ public class App extends Application {
 												shoppingCart,
 												new HBox(10, new EventButton("Remove selection", e -> {
 													shoppingCart.remove();
-													checkout(shoppingCart.priceArray());
+													update(shoppingCart.priceArray());
 												}), new EventButton("Clear cart", e -> {
 													shoppingCart.removeAll();
-													checkout(shoppingCart.priceArray());
+													update(shoppingCart.priceArray());
 												}), new EventButton("Checkout", e -> {
 													shoppingCart.removeAll();
-													checkout(shoppingCart.priceArray());
+													update(shoppingCart.priceArray());
 												})),
 												new HBox(
 														10,
@@ -77,7 +77,7 @@ public class App extends Application {
 		stage.show();
 	}
 
-	void checkout(ArrayList<Double> priceArray) {
+	void update(ArrayList<Double> priceArray) {
 		double sum = 0;
 		for (Double d : priceArray) {
 			sum += d;
