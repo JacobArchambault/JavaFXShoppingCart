@@ -59,11 +59,9 @@ public class App extends Application {
 													shoppingCart.remove();
 													update(shoppingCart.priceArray());
 												}), new EventButton("Clear cart", e -> {
-													shoppingCart.removeAll();
-													update(shoppingCart.priceArray());
+													clear();
 												}), new EventButton("Checkout", e -> {
-													shoppingCart.removeAll();
-													update(shoppingCart.priceArray());
+													clear();
 												})),
 												new HBox(
 														10,
@@ -75,6 +73,11 @@ public class App extends Application {
 														total)))));
 
 		stage.show();
+	}
+
+	private void clear() {
+		shoppingCart.removeAll();
+		update(shoppingCart.priceArray());
 	}
 
 	void update(ArrayList<Double> priceArray) {
