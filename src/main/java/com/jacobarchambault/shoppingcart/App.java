@@ -36,6 +36,7 @@ public class App extends Application {
 						.observableArrayList(
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
 										.toArrayList()));
+		Selection selection = new Selection(listView, shoppingCart);
 		stage
 				.setScene(
 						new Scene(
@@ -46,7 +47,7 @@ public class App extends Application {
 												new Label("Pick a book"),
 												listView,
 												new EventButton("Add to shopping cart", e -> {
-													new Selection(listView, shoppingCart).addItem();
+													selection.addItem();
 													update();
 												})),
 										new VBox(
