@@ -58,11 +58,9 @@ public class App extends Application {
 												new HBox(10, new EventButton("Remove selection", e -> {
 													shoppingCart.remove();
 													update(shoppingCart.priceArray());
-												}), new EventButton("Clear cart", e -> {
-													clear();
-												}), new EventButton("Checkout", e -> {
-													clear();
-												})),
+												}),
+														new EventButton("Clear cart", e -> clear()),
+														new EventButton("Checkout", e -> clear())),
 												new HBox(
 														10,
 														new Label("Subtotal: "),
