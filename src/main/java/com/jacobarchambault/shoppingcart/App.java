@@ -77,7 +77,7 @@ public class App extends Application {
 	}
 
 	void update() {
-		var sum = shoppingCart.subTotal();
+		final var sum = shoppingCart.subTotal();
 		final var taxAmount = sum * .07;
 		subTotal.setText(NumberFormat.getCurrencyInstance().format(sum));
 		tax.setText(NumberFormat.getCurrencyInstance().format(taxAmount));
