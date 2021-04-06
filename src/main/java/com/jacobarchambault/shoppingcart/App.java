@@ -49,7 +49,7 @@ public class App extends Application {
 												listView,
 												new EventButton("Add to shopping cart", e -> {
 													new Selection(listView, shoppingCart).addItem();
-													update(shoppingCart.priceArray());
+													update(sum(shoppingCart.priceArray()));
 												})),
 										new VBox(
 												10,
@@ -57,7 +57,7 @@ public class App extends Application {
 												shoppingCart,
 												new HBox(10, new EventButton("Remove selection", e -> {
 													shoppingCart.remove();
-													update(shoppingCart.priceArray());
+													update(sum(shoppingCart.priceArray()));
 												}),
 														new EventButton("Clear cart", e -> clear()),
 														new EventButton("Checkout", e -> clear())),
@@ -75,19 +75,23 @@ public class App extends Application {
 
 	private void clear() {
 		shoppingCart.removeAll();
-		update(shoppingCart.priceArray());
+		update(sum(shoppingCart.priceArray()));
 	}
 
-	void update(ArrayList<Double> priceArray) {
-		double sum = 0;
-		for (Double d : priceArray) {
-			sum += d;
-		}
+	void update(double sum) {
 		var taxAmount = sum * .07;
 		subTotal.setText(NumberFormat.getCurrencyInstance().format(sum));
 		tax.setText(NumberFormat.getCurrencyInstance().format(taxAmount));
 		total.setText(NumberFormat.getCurrencyInstance().format(sum + taxAmount));
 
+	}
+
+	private double sum(ArrayList<Double> priceArray) {
+		double sum = 0;
+		for (Double d : priceArray) {
+			sum += d;
+		}
+		return sum;
 	}
 
 }
