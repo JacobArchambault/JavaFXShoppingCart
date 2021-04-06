@@ -25,8 +25,7 @@ public class App extends Application {
 		Application.launch();
 	}
 
-	ListView<String> shoppingCart = new ListView<>();
-
+	ShoppingCart shoppingCart = new ShoppingCart();
 	Label subTotal = new Label("$0.00");
 	Label tax = new Label("$0.00");
 	Label total = new Label("$0.00");
@@ -57,9 +56,11 @@ public class App extends Application {
 												shoppingCart,
 												new HBox(
 														10,
-														new EventButton("Remove selection", e -> remove()),
-														new EventButton("Clear cart", e -> removeAll()),
-														new EventButton("Checkout", e -> checkout())),
+														new EventButton("Remove selection", e -> shoppingCart.remove()),
+														new EventButton("Clear cart", e -> shoppingCart.removeAll()),
+														new EventButton(
+																"Checkout",
+																e -> checkout(shoppingCart.priceArray()))),
 												new HBox(
 														10,
 														new Label("Subtotal: "),
@@ -72,20 +73,8 @@ public class App extends Application {
 		stage.show();
 	}
 
-	void remove() {
-		shoppingCart.getItems().remove(shoppingCart.getSelectionModel().getSelectedItem());
-	}
-
-	void removeAll() {
-		shoppingCart.getItems().clear();
-	}
-
-	void checkout() {
-		var prices = new ArrayList<String>();
-		var items = shoppingCart.getItems();
-		for (var item : items) {
-			prices.add(item.split(",")[1]);
-		}
+	void checkout(ArrayList<String> priceArray) {
+		var prices = priceArray;
 		double sum = 0;
 		for (String d : prices) {
 			sum += Double.parseDouble(d);
