@@ -47,20 +47,24 @@ public class App extends Application {
 												10,
 												new Label("Pick a book"),
 												listView,
-												new EventButton(
-														"Add to shopping cart",
-														e -> new Selection(listView, shoppingCart).addItem())),
+												new EventButton("Add to shopping cart", e -> {
+													new Selection(listView, shoppingCart).addItem();
+													checkout(shoppingCart.priceArray());
+												})),
 										new VBox(
 												10,
 												new Label("Shopping cart"),
 												shoppingCart,
-												new HBox(
-														10,
-														new EventButton("Remove selection", e -> shoppingCart.remove()),
-														new EventButton("Clear cart", e -> shoppingCart.removeAll()),
-														new EventButton(
-																"Checkout",
-																e -> checkout(shoppingCart.priceArray()))),
+												new HBox(10, new EventButton("Remove selection", e -> {
+													shoppingCart.remove();
+													checkout(shoppingCart.priceArray());
+												}), new EventButton("Clear cart", e -> {
+													shoppingCart.removeAll();
+													checkout(shoppingCart.priceArray());
+												}), new EventButton("Checkout", e -> {
+													shoppingCart.removeAll();
+													checkout(shoppingCart.priceArray());
+												})),
 												new HBox(
 														10,
 														new Label("Subtotal: "),
