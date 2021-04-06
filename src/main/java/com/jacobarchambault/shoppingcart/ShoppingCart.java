@@ -13,13 +13,13 @@ public class ShoppingCart extends ListView<String> {
 		getItems().clear();
 	}
 
-	ArrayList<Double> priceArray() {
-		var prices = new ArrayList<Double>();
+	Double subTotal() {
 		var items = getItems();
+		var sum = 0.0;
 		for (var item : items) {
-			prices.add(Double.parseDouble(item.split(",")[1]));
+			sum += Double.parseDouble(item.split(",")[1]);
 		}
-		return prices;
+		return sum;
 	}
 
 }

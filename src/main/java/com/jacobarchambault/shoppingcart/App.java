@@ -37,7 +37,6 @@ public class App extends Application {
 						.observableArrayList(
 								new BookPrices(new BufferedReader(new FileReader(new File("BookPrices.txt"))))
 										.toArrayList()));
-
 		stage
 				.setScene(
 						new Scene(
@@ -49,7 +48,7 @@ public class App extends Application {
 												listView,
 												new EventButton("Add to shopping cart", e -> {
 													new Selection(listView, shoppingCart).addItem();
-													update(sum(shoppingCart.priceArray()));
+													update(shoppingCart.subTotal());
 												})),
 										new VBox(
 												10,
@@ -57,7 +56,7 @@ public class App extends Application {
 												shoppingCart,
 												new HBox(10, new EventButton("Remove selection", e -> {
 													shoppingCart.remove();
-													update(sum(shoppingCart.priceArray()));
+													update(shoppingCart.subTotal());
 												}),
 														new EventButton("Clear cart", e -> clear()),
 														new EventButton("Checkout", e -> clear())),
@@ -75,7 +74,7 @@ public class App extends Application {
 
 	private void clear() {
 		shoppingCart.removeAll();
-		update(sum(shoppingCart.priceArray()));
+		update(shoppingCart.subTotal());
 	}
 
 	void update(double sum) {
@@ -84,14 +83,6 @@ public class App extends Application {
 		tax.setText(NumberFormat.getCurrencyInstance().format(taxAmount));
 		total.setText(NumberFormat.getCurrencyInstance().format(sum + taxAmount));
 
-	}
-
-	private double sum(ArrayList<Double> priceArray) {
-		double sum = 0;
-		for (Double d : priceArray) {
-			sum += d;
-		}
-		return sum;
 	}
 
 }
