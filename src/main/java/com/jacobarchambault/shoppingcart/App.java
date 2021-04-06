@@ -28,6 +28,9 @@ public class App extends Application {
 	ListView<String> shoppingCart = new ListView<>();
 
 	Label subTotal = new Label("$0.00");
+	Label tax = new Label("$0.00");
+	Label total = new Label("$0.00");
+
 	@Override
 	public void start(final Stage stage) throws IOException {
 		final var listView = new ListView<String>(
@@ -57,7 +60,14 @@ public class App extends Application {
 														new EventButton("Remove selection", e -> remove()),
 														new EventButton("Clear cart", e -> removeAll()),
 														new EventButton("Checkout", e -> checkout())),
-												new HBox(new Label("Subtotal"), subTotal)))));
+												new HBox(
+														10,
+														new Label("Subtotal: "),
+														subTotal,
+														new Label("Tax: "),
+														tax,
+														new Label("Total: "),
+														total)))));
 
 		stage.show();
 	}
@@ -80,8 +90,11 @@ public class App extends Application {
 		for (String d : prices) {
 			sum += Double.parseDouble(d);
 		}
-		subTotal.setText(NumberFormat.getCurrencyInstance()
-				.format(sum));
+		var taxAmount = sum * .07;
+		subTotal.setText(NumberFormat.getCurrencyInstance().format(sum));
+		tax.setText(NumberFormat.getCurrencyInstance().format(taxAmount));
+		total.setText(NumberFormat.getCurrencyInstance().format(sum + taxAmount));
+
 	}
 
 }
